@@ -1,7 +1,9 @@
+"use client"
 import Link from 'next/link'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+
 
 const articles = [
   { id: 1, title: 'Permakultur, Metode Bercocok Tanam yang "Sustainable"', image: '/article/permakultur.jpg' },
