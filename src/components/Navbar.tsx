@@ -24,7 +24,7 @@ export default function Navbar() {
       >
         <div className='flex justify-between w-full p-5'>
           <Image src="/logohorizontal.png" width={100} height={20} alt="TumbuhIn" />
-          <button className="text-gray-600 text-[#86B737] text-xl" onClick={handleToggle}>☰</button>
+          <button className="text-[#86B737] text-xl" onClick={handleToggle}>☰</button>
         </div>
         <a href="#home" className="text-gray-600 text-md p-4 w-full text-center">Home</a>
         <a href="#about" className="text-gray-600 text-md p-4 w-full text-center">About</a>
