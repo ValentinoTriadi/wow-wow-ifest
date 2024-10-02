@@ -36,14 +36,5 @@ const config = {
       },
     ],
   },
-
-  overrides: [
-    {
-      files: ["**/*.svg", "**/*.png", "**/*.jpg", "**/*.jpeg"],
-      rules: {
-        "@typescript-eslint/no-unsafe-assignment": "off", // Disable for these file types
-      },
-    },
-  ],
 };
 module.exports = config;
