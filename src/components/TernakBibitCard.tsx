@@ -1,8 +1,7 @@
 import Link from "next/link"
 
 const harvests = [
-    { id: 1, type: 'TERNAK SAPI', location: 'Jatinangor', owner: 'Sumarno', image: '/myHarvest/ternaksapi.jpg' },
-    // Add more harvests here
+    { id: 1, type: 'Strawberry', location: 'Cibaduyut', owner: 'Sumanto', image: '/myHarvest/kebunStrawberry.jpeg' },
   ]
   
   const TernakBibitCard = () => {

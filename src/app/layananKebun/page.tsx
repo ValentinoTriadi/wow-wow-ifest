@@ -4,9 +4,6 @@ import KebunBibitCard from '@/components/KebunBibitCard';
 import KebunLahanCard from '@/components/KebunLahanCard';
 import KebunPekerjaCard from '@/components/KebunPekerjaCard';
 import Navbar from '@/components/Navbar';
-import TaniBibitCard from '@/components/TaniBibitCard';
-import TaniLahanCard from '@/components/TaniLahanCard';
-import TaniPekerjaCard from '@/components/TaniPekerjaCard';
 import React, { useState } from 'react';
 
 const LayananKebun = () => {

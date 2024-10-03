@@ -1,9 +1,6 @@
 "use client"
 
 import Navbar from '@/components/Navbar';
-import TaniBibitCard from '@/components/TaniBibitCard';
-import TaniLahanCard from '@/components/TaniLahanCard';
-import TaniPekerjaCard from '@/components/TaniPekerjaCard';
 import TernakBibitCard from '@/components/TernakBibitCard';
 import TernakLahanCard from '@/components/TernakLahanCard';
 import TernakPekerjaCard from '@/components/TernakPekerjaCard';

@@ -1,16 +1,10 @@
 "use client"
 
-import Link from "next/link";
-
-import { LatestPost } from "@/app/_components/post";
-import { getServerAuthSession } from "@/server/auth";
-import { api, HydrateClient } from "@/trpc/server";
 import Head from "next/head";
 import ArticleCarousel from "@/components/home/ArticleCarousel";
 import MyHarvest from "@/components/home/MyHarvest";
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/navigation";
-import Loader from "@/components/Loader";
 
 export default async function Home() {
   const router = useRouter();
@@ -81,9 +75,6 @@ export default async function Home() {
         <section>
           <div className="mb-4 flex items-center justify-between">
             <h3 className="mx-1 text-xl font-bold">Panen saya</h3>
-            <button className="text-[#77ab24] underline underline-offset-2">
-              Lihat semua
-            </button>
           </div>
           <MyHarvest />
         </section>
