@@ -158,13 +158,12 @@ model Pekerja {
   id           String   @id @default(cuid())
   userId       String
   images       String[]
-  header       String?
-  Lokasi       String?
+  nama         String?
+  lokasi       String?
   harga        Int?
   keahlian     String[]
   deskripsi    String?
   rincianKerja String[]
-  rating       Int?
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   Rating       Rating[]
 }

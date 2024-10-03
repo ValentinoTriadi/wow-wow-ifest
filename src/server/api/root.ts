@@ -1,10 +1,11 @@
 import { postRouter } from "@/server/api/routers/post";
 import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
 import { lahanRouter } from "./routers/lahan";
-import {authRouter} from "@/server/api/routers/authentication";
-import {panenRouter} from "@/server/api/routers/panen";
-import {bibitRouter} from "@/server/api/routers/bibit";
-import {produkRouter} from "@/server/api/routers/produk";
+import { authRouter } from "./routers/authentication";
+import { panenRouter } from "@/server/api/routers/panen";
+import { bibitRouter } from "@/server/api/routers/bibit";
+import { produkRouter } from "@/server/api/routers/produk";
+import { pekerjaRouter } from "./routers/pekerja";
 
 /**
  * This is the primary router for your server.
@@ -14,10 +15,11 @@ import {produkRouter} from "@/server/api/routers/produk";
 export const appRouter = createTRPCRouter({
   post: postRouter,
   lahan: lahanRouter,
+  pekerja: pekerjaRouter,
   auth: authRouter,
   panen: panenRouter,
   bibit: bibitRouter,
-  produk: produkRouter
+  produk: produkRouter,
 });
 
 // export type definition of API
