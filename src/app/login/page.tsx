@@ -19,8 +19,8 @@ import Link from "next/link";
 import { loginSchema, type loginType } from "@/lib/schema";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
-const backArrow = "/images/backarrow.svg";
+import BackArrow from "public/images/backarrow.svg";
+import { StaticImageTranslator } from "@/utilities/static-image-translator";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -56,9 +56,9 @@ const LoginForm = () => {
       <Link href="/">
         <button className="my-8 flex h-10 w-10 items-center justify-center rounded-md bg-lime-500 max-md:my-4 max-md:h-8 max-md:w-8">
           <Image
-            src={backArrow}
-            width={20}
-            height={20}
+            src={StaticImageTranslator(BackArrow)}
+            height={10}
+            width={10}
             alt="Back Arrow Images"
           />
         </button>
