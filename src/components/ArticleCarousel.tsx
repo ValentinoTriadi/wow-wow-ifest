@@ -53,20 +53,24 @@ const ArticleCarousel = () => {
 
   return (
     <div className="relative overflow-hidden w-full mt-7 rounded-[20px]">
-      <div className="flex transition-transform ease-out duration-1000"
-        style={{ transform: `translateX(${-currentIndex * 100}%)` }}
-      >
-        {articles.map((article, index) => (
-          <div key={index} className="min-w-full flex-shrink-0 relative">
-            <Link href={`/article/${article.id}`}>
-              <div className="relative w-full h-48">
-                <img src={article.image} alt={article.title} className="w-full h-48 object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent"></div>
-              </div>
-              <h3 className="absolute bottom-7 left-2 text-white text-md font-semibold p-2 rounded-b-[20px]">{article.title}</h3>
-            </Link>
-          </div>
-        ))}
+      <div className='relative'>
+        <div className="flex transition-transform ease-out duration-1000"
+          style={{ transform: `translateX(${-currentIndex * 100}%)` }}
+        >
+          
+          {articles.map((article, index) => (
+            <div key={index} className="min-w-full flex-shrink-0 relative">
+              <Link href={`/article/${article.id}`}>
+                <div className="relative w-full h-48">
+                  <img src={article.image} alt={article.title} className="w-full h-48 object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/55 to-transparent z-10"></div>
+                  <h3 className="absolute bottom-7 left-2 text-white text-md font-semibold p-2 rounded-b-[20px] z-20">{article.title}</h3>
+                </div>
+              </Link>
+            </div>
+          ))}
+
+        </div>
       </div>
       <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {articles.map((_, idx) => (
