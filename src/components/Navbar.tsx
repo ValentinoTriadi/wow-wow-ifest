@@ -26,10 +26,11 @@ export default function Navbar() {
           <Image src="/logohorizontal.png" width={100} height={20} alt="TumbuhIn" />
           <button className="text-[#86B737] text-xl" onClick={handleToggle}>☰</button>
         </div>
-        <a href="#home" className="text-gray-600 text-md p-4 w-full text-center">Home</a>
-        <a href="#about" className="text-gray-600 text-md p-4 w-full text-center">About</a>
-        <a href="#services" className="text-gray-600 text-md p-4 w-full text-center">Services</a>
-        <a href="#contact" className="text-gray-600 text-md p-4 w-full text-center">Contact</a>
+        <a href="/" className="text-gray-600 text-md p-4 w-full text-center">Beranda</a>
+        <a href="#" className="text-gray-600 text-md p-4 w-full text-center">Mulai Agrikultur</a>
+        <a href="#" className="text-gray-600 text-md p-4 w-full text-center">Tani & Ternak</a>
+        <a href="#" className="text-gray-600 text-md p-4 w-full text-center">Konten Edukasi</a>
+        <a href="/profile" className="text-gray-600 text-md p-4 w-full text-center">Profile</a>
       </div>
     </div>
   );

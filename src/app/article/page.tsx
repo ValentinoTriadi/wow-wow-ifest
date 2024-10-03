@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from "react";
@@ -93,6 +94,7 @@ const Article = () => {
       </main>
     </div>
   );
+
 };
 
 export default Article;
