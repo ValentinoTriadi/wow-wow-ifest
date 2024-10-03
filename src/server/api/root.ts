@@ -4,6 +4,7 @@ import { lahanRouter } from "./routers/lahan";
 import {authRouter} from "@/server/api/routers/authentication";
 import {panenRouter} from "@/server/api/routers/panen";
 import {bibitRouter} from "@/server/api/routers/bibit";
+import {produkRouter} from "@/server/api/routers/produk";
 
 /**
  * This is the primary router for your server.
@@ -15,7 +16,8 @@ export const appRouter = createTRPCRouter({
   lahan: lahanRouter,
   auth: authRouter,
   panen: panenRouter,
-  bibit: bibitRouter
+  bibit: bibitRouter,
+  produk: produkRouter
 });
 
 // export type definition of API
