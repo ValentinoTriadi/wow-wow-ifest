@@ -76,3 +76,20 @@ export const getAllPekerjaSchema = z.object({
   minHarga: z.number().optional(),
   maxHarga: z.number().optional(),
 });
+
+
+// Panen Schema
+export const CreatePanenSchema = z.object({
+    userId: z.string(),
+    images: z.array(z.string()),
+    title: z.string(),
+    lokasi: z.string(),
+    kondisi: z.string()
+})
+
+export const UpdateRatingSchema = z.object({
+    userId: z.string(),
+    workerId: z.string(),
+    panenId: z.string(),
+    rating: z.array(z.number().min(1).max(5))
+})

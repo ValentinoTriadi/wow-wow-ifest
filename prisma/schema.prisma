@@ -96,8 +96,7 @@ model Panen {
   lokasi         String
   kondisi        String
   laporanPekerja LaporanPekerja[]
-  ratingId       Int
-  Rating         Rating           @relation(fields: [ratingId], references: [id])
+  Rating         Rating[]
 }
 
 model LaporanPekerja {
@@ -178,15 +177,16 @@ model Toko {
 }
 
 model Rating {
-  id           Int      @id @default(autoincrement())
-  rate         Int
-  createdAt    DateTime @default(now())
-  createdById  String
-  workerRating String
+  id          Int      @id @default(autoincrement())
+  rate        Int[]
+  createdAt   DateTime @default(now())
+  createdById String
+  workerId    String
+  panenId     String
 
   user   User    @relation(fields: [createdById], references: [id], onDelete: Cascade)
-  worker Pekerja @relation(fields: [workerRating], references: [id], onDelete: Cascade)
-  Panen  Panen[]
+  worker Pekerja @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  Panen  Panen   @relation(fields: [panenId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {
