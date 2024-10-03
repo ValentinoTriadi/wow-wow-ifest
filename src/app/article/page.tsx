@@ -1,13 +1,40 @@
 
 "use client";
 
+
 import React, { useState } from "react";
 import ArticleCarousel from "@/components/ArticleCarousel";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import Image from "next/image";
-import { articles } from "@/lib/constant";
 
+const articlesDummy = [
+  {
+    id: 1,
+    title: 'Permakultur, Metode Bercocok Tanam yang "Sustainable"',
+    image: "/article/permakultur.jpg",
+    content:
+      "Permakultur adalah metode bercocok tanam yang berkelanjutan dengan prinsip-prinsip ekologi dan desain yang meniru pola dan hubungan yang ditemukan di alam. Metode ini bertujuan untuk menciptakan sistem yang produktif, efisien, dan ramah lingkungan. Permakultur dapat diterapkan di berbagai skala, mulai dari kebun rumah hingga pertanian komersial.",
+    category: "pertanian",
+  },
+  {
+    id: 2,
+    title: "Urban Farming: Solusi Berkebun di Lahan Sempit",
+    image: "/article/urban-farming.jpg",
+    content:
+      "Urban farming atau pertanian perkotaan adalah praktik menanam tanaman dan memelihara hewan di dalam dan sekitar kota. Ini adalah solusi untuk berkebun di lahan sempit dan dapat membantu meningkatkan ketahanan pangan serta mengurangi jejak karbon. Urban farming juga dapat meningkatkan kualitas udara dan lingkungan di kota.",
+    category: "peternakan",
+  },
+  {
+    id: 3,
+    title: "Hidroponik: Bertani Tanpa Tanah",
+    image: "/article/buah.jpg",
+    content:
+      "Hidroponik adalah metode bercocok tanam tanpa menggunakan tanah, melainkan menggunakan larutan nutrisi mineral dalam air. Metode ini memungkinkan tanaman tumbuh lebih cepat dan lebih efisien, serta dapat dilakukan di berbagai tempat, termasuk di dalam ruangan. Hidroponik juga dapat menghasilkan hasil panen yang lebih besar dan lebih sehat.",
+    category: "perkebunan",
+  },
+  // Add more articles with different categories here
+];
 const Article = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
@@ -16,8 +43,8 @@ const Article = () => {
   };
 
   const filteredArticles = selectedCategory
-    ? articles.filter((article) => article.category === selectedCategory)
-    : articles;
+    ? articlesDummy.filter((article) => article.category === selectedCategory)
+    : articlesDummy;
 
   return (
     <div>
@@ -75,10 +102,10 @@ const Article = () => {
                 >
                   <div className="relative h-24 w-full rounded-[20px]">
                     <Image
-                      src={article.image}
-                      alt={article.title}
                       width={100}
                       height={100}
+                      src={article.image}
+                      alt={article.title}
                       className="h-24 w-full rounded-[20px] object-cover"
                     />
                     <div className="absolute inset-0 w-full rounded-[20px] bg-gradient-to-r from-black to-transparent"></div>
@@ -94,7 +121,6 @@ const Article = () => {
       </main>
     </div>
   );
-
 };
 
 export default Article;

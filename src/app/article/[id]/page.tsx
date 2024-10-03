@@ -2,15 +2,16 @@
 "use client";
 
 import React from "react";
+import { articles } from "@/components/ArticleCarousel";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { articles } from "@/lib/constant";
 
 const ArticlePage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
 
   // Find the article based on the ID
   const article = articles.find((article) => article.id === parseInt(id, 10));
+
 
   const router = useRouter();
   // Handle case where article is not found
@@ -31,7 +32,7 @@ const ArticlePage = ({ params }: { params: { id: string } }) => {
           alt={article.title}
           width={100}
           height={100}
-          className="h-64 w-full object-cover"
+          className="h-64 w-full rounded-t-lg object-cover"
         />
         <div className="absolute inset-0 rounded-b-[50px] bg-gradient-to-t from-black to-transparent"></div>
         <h1 className="absolute bottom-6 left-8 text-xl font-semibold text-white">
@@ -58,9 +59,13 @@ const ArticlePage = ({ params }: { params: { id: string } }) => {
           <span className="ml-2">Back</span>
         </button>
       </section>
-      <section className="relative mt-64 rounded-b-lg bg-white p-6 shadow-md">
-        <p className="leading-relaxed text-gray-800">{article.content}</p>
-      </section>
+
+      {/* <section className="relative bg-white p-6 rounded-b-lg shadow-md mt-4">
+        <p className="text-gray-800 leading-relaxed">
+          {article.content}
+        </p>
+      </section> */}
+
     </main>
   );
 };
