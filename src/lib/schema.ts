@@ -98,3 +98,11 @@ export const UpdateRatingSchema = z.object({
 export const GetBibitSchema = z.object({
     tag: z.string()
 })
+
+
+// Produk --------------------------------
+export const GetProdukSchema = z.object({
+    tag: z.string()
+})
+
+

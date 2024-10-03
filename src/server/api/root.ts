@@ -2,8 +2,9 @@ import { postRouter } from "@/server/api/routers/post";
 import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
 import { lahanRouter } from "./routers/lahan";
 import { authRouter } from "./routers/authentication";
-import {panenRouter} from "@/server/api/routers/panen";
-import {bibitRouter} from "@/server/api/routers/bibit";
+import { panenRouter } from "@/server/api/routers/panen";
+import { bibitRouter } from "@/server/api/routers/bibit";
+import { produkRouter } from "@/server/api/routers/produk";
 import { pekerjaRouter } from "./routers/pekerja";
 
 /**
@@ -17,7 +18,8 @@ export const appRouter = createTRPCRouter({
   pekerja: pekerjaRouter,
   auth: authRouter,
   panen: panenRouter,
-  bibit: bibitRouter
+  bibit: bibitRouter,
+  produk: produkRouter,
 });
 
 // export type definition of API
