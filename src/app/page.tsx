@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link";
 
 import { LatestPost } from "@/app/_components/post";
@@ -8,11 +10,18 @@ import Image from "next/image";
 import ArticleCarousel from "@/components/ArticleCarousel";
 import MyHarvest from "@/components/MyHarvest";
 import Navbar from "@/components/Navbar";
+import { useRouter } from "next/navigation";
+import Loader from "@/components/Loader";
 
 
 
 export default async function Home() {
+  const router = useRouter();
 
+  const handleNavigation = (path: string) => {
+    router.push(path);
+  };
+  
   const dummyArticle = [
     {
       id: "1",
@@ -52,9 +61,24 @@ export default async function Home() {
         <section>
           <h3 className="text-xl font-bold mb-2 mx-1">Kategori</h3>
           <div className="flex space-x-4 mb-4">
-            <button className="bg-[#dbefb2] px-4 py-2 rounded-full">Tani</button>
-            <button className="bg-[#dbefb2] px-4 py-2 rounded-full">Ternak</button>
-            <button className="bg-[#dbefb2] px-4 py-2 rounded-full">Kebun</button>
+          <button
+            onClick={() => handleNavigation('/layananTani')}
+            className="bg-[#dbefb2] px-4 py-2 rounded-full"
+          >
+            Tani
+          </button>
+          <button
+            onClick={() => handleNavigation('/layananTernak')}
+            className="bg-[#dbefb2] px-4 py-2 rounded-full"
+          >
+            Ternak
+          </button>
+          <button
+            onClick={() => handleNavigation('/layananKebun')}
+            className="bg-[#dbefb2] px-4 py-2 rounded-full"
+          >
+            Kebun
+          </button>
           </div>
         </section>
         <section>
