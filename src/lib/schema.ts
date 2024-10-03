@@ -93,3 +93,8 @@ export const UpdateRatingSchema = z.object({
     panenId: z.string(),
     rating: z.array(z.number().min(1).max(5))
 })
+
+// Bibit --------------------------------
+export const GetBibitSchema = z.object({
+    tag: z.string()
+})
