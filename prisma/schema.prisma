@@ -60,14 +60,23 @@ enum Role {
   User
 }
 
+enum Gender {
+  None
+  Lakilaki
+  Perempuan
+}
+
 model User {
   id             String           @id @default(cuid())
   role           Role             @default(User)
-  name           String?
+  name           String
   email          String?          @unique
   emailVerified  DateTime?
-  phoneNumber    String?
-  password       String?
+  phoneNumber    Int              @default(0)
+  tanggalLahir   DateTime
+  NIK            Int              @default(0)
+  password       String
+  gender         Gender           @default(None)
   image          String?
   accounts       Account[]
   sessions       Session[]

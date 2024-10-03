@@ -3,9 +3,11 @@ import {z} from "zod";
 
 export const registerSchema = z.object({
     phone: z.number().min(10).max(13),
-    gender: z.enum(["Laki-laki", "Perempuan"]),
+    gender: z.enum(["Lakilaki", "Perempuan"]),
     nama: z.string().min(3).max(255),
     birthdate: z.string().min(10).max(10),
+    NIK: z.number().min(12).max(12),
+    password: z.string().min(8).max(255),
 })
 
 export const loginSchema = z.object({
