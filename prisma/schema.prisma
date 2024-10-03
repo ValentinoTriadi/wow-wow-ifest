@@ -94,7 +94,7 @@ model Lahan {
   id            String   @id @default(cuid())
   userId        String
   header        String?
-  luasLahan     String?
+  luasLahan     Int?
   harga         Int?
   tersediaUntuk String[]
   deskripsi     String?
