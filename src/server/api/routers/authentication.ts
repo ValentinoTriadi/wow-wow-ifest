@@ -1,18 +1,17 @@
 import bcrypt from "bcryptjs";
 
-import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "@/server/api/trpc";
 import { loginSchema, registerSchema } from "@/lib/schema";
+import { signOut } from "next-auth/react";
 
 export const authRouter = createTRPCRouter({
   login: publicProcedure.input(loginSchema).mutation(async ({ ctx, input }) => {
     const user = await ctx.db.user.findFirst({
-      where: {
-        OR: [
-          { email: input.email_or_phone },
-          { phoneNumber: parseInt(input.email_or_phone) },
-        ],
-        password: input.password,
-      },
+      where: { email: input.email_or_phone },
     });
 
     if (!user) {
@@ -32,11 +31,8 @@ export const authRouter = createTRPCRouter({
 
       const user = await ctx.db.user.create({
         data: {
-          phoneNumber: input.phone,
-          gender: input.gender,
           name: input.nama,
-          tanggalLahir: input.birthdate,
-          NIK: input.NIK,
+          email: input.email,
           password: hashedPassword,
         },
       });
@@ -47,4 +43,8 @@ export const authRouter = createTRPCRouter({
 
       return user;
     }),
+
+  self: protectedProcedure.query(async ({ ctx }) => {
+    return ctx.session.user;
+  }),
 });
