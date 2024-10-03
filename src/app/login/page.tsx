@@ -1,8 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { LoginRole } from "./ILoginData";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -10,68 +8,57 @@ import {
   FormField,
   FormItem,
   FormLabel,
+
+  FormMessage,
+
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Link from "next/link";
-import BackArrow from "public/images/backarrow.svg";
-import { StaticImageTranslator } from "@/utilities/static-image-translator";
+import { loginSchema, type loginType } from "@/lib/schema";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
+const backArrow = "/images/backarrow.svg";
 
 const LoginForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
 
-  const loginSchema = z.object({
-    email: z
-      .string()
-      .email("Invalid email address")
-        .min(1, { message: "Email is required" }),
-    password: z.string(),
-    role: z.nativeEnum(LoginRole),
-  });
+  async function onSubmit(values: loginType) {
+    const { email_or_phone: email, password } = values;
 
-  const roles = [
-    {
-      id: LoginRole.User,
-      label: "User",
-    },
-    {
-      id: LoginRole.Pekerja,
-      label: "Worker",
-    },
-    {
-      id: LoginRole.Penjual,
-      label: "Seller",
-    },
-  ];
-
-  function onSubmit(values: z.infer<typeof loginSchema>) {
-    //TODO: PASS ANY DATA TO DB
-    console.log("Data Login : ", values);
+    await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+    }).then((res) => {
+      if (res?.error) {
+        alert(res.error);
+      } else {
+        router.push("/");
+      }
+    });
   }
-
-  const handlePasswordVisibility = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
-
-  const form = useForm<z.infer<typeof loginSchema>>({
+  
+  const form = useForm<loginType>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
+      email_or_phone: "",
       password: "",
-      role: LoginRole.User,
+
     },
   });
 
   return (
     <div className="m-10 flex h-screen flex-col font-poppins">
-      <Link href="/landing">
+
+      <Link href="/">
         <button className="my-8 flex h-10 w-10 items-center justify-center rounded-md bg-lime-500 max-md:my-4 max-md:h-8 max-md:w-8">
           <Image
-            src={StaticImageTranslator(BackArrow)}
-            height={10}
-            width={10}
+            src={backArrow}
+            width={20}
+            height={20}
             alt="Back Arrow Images"
           />
         </button>
@@ -84,114 +71,57 @@ const LoginForm = () => {
       <div className="my-5 h-[1px] w-full bg-black"></div>
       <Form {...form}>
         <form
-          action=""
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex h-full flex-col justify-between"
+          className="flex flex-col space-y-5"
         >
-          <div className="mb-10 flex flex-col gap-5">
-            {/* Email Field */}
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email: </FormLabel>
-                  <FormControl>
-                    <Input placeholder="1235@gmail.com" {...field}></Input>
-                  </FormControl>
-                </FormItem>
-              )}
-            ></FormField>
-            {/* Password Field */}
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password: </FormLabel>
-                  <FormControl>
-                    <div className="relative h-fit">
-                      <Input
-                        {...field}
-                        placeholder="Your Password"
-                        type={showPassword ? "text" : "password"}
-                      ></Input>
-                      <button
-                        onClick={handlePasswordVisibility}
-                        className="absolute right-3 top-1/3"
-                        type="button"
-                      >
-                        <Image
-                          width={10}
-                          height={10}
-                          src={
-                            showPassword
-                              ? "/images/visibility.svg"
-                              : "/images/visibility_off.svg"
-                          }
-                          alt="Show Password"
-                          className="h-5 w-5 -translate-y-1"
-                        />
-                      </button>
-                    </div>
-                  </FormControl>
-                </FormItem>
-              )}
-            ></FormField>
+          {/* Email Field */}
+          <FormField
+            control={form.control}
+            name="email_or_phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="Masukkan Email" {...field}></Input>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            {/* Role Selection */}
-            <FormField
-              control={form.control}
-              name="role"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Login Sebagai: </FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      value={field.value.toString()}
-                      onValueChange={field.onChange}
-                      className="flex flex-row"
-                    >
-                      {roles.map((role) => (
-                        <FormItem
-                          key={role.id}
-                          className="flex items-center justify-center space-y-0"
-                        >
-                          <RadioGroupItem
-                            value={role.id.toString()}
-                            id={role.id.toString()}
-                          />
-                          <FormLabel
-                            htmlFor={role.id.toString()}
-                            className="ml-2"
-                          >
-                            {role.label}
-                          </FormLabel>
-                        </FormItem>
-                      ))}
-                    </RadioGroup>
-                  </FormControl>
-                </FormItem>
-              )}
-            ></FormField>
-          </div>
+          {/* Password Field */}
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Kata Sandi </FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="Masukkan Kata Sandi"></Input>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-          <div className="mb-14 mt-auto flex flex-col items-center max-md:mb-20">
-            <p className="text-center text-sm font-medium leading-none">
-              Belum punya akun TumbuHin?{" "}
-              <span className="p-2 font-bold text-red-500">
-                <a href="/register">DAFTAR</a>
-              </span>
-            </p>
-            <Button
-              className="bottom-0 mt-5 bg-lime-500 p-6 text-lg"
-              type="submit"
-            >
-              Submit
-            </Button>
-          </div>
+          <Button
+            className="bottom-0 mt-5 bg-lime-500 p-6 text-lg hover:bg-lime-600"
+            type="submit"
+          >
+            Submit
+          </Button>
         </form>
       </Form>
+
+      <div className="mb-14 mt-auto flex flex-col items-center max-md:mb-20">
+        <p className="text-center text-sm font-medium leading-none">
+          Belum punya akun TumbuhIn?{" "}
+          <span className="p-2 font-bold text-blue-600 hover:text-blue-500">
+            <a href="/register">DAFTAR</a>
+          </span>
+        </p>
+      </div>
+
     </div>
   );
 };
