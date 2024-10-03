@@ -27,9 +27,9 @@ export default function Navbar() {
           <button className="text-[#86B737] text-xl" onClick={handleToggle}>☰</button>
         </div>
         <a href="/" className="text-gray-600 text-md p-4 w-full text-center">Beranda</a>
-        <a href="#" className="text-gray-600 text-md p-4 w-full text-center">Mulai Agrikultur</a>
-        <a href="#" className="text-gray-600 text-md p-4 w-full text-center">Tani & Ternak</a>
-        <a href="#" className="text-gray-600 text-md p-4 w-full text-center">Konten Edukasi</a>
+        <a href="/process-lahan" className="text-gray-600 text-md p-4 w-full text-center">Mulai Agrikultur</a>
+        <a href="/tani-ternak" className="text-gray-600 text-md p-4 w-full text-center">Tani & Ternak</a>
+        <a href="/article" className="text-gray-600 text-md p-4 w-full text-center">Konten Edukasi</a>
         <a href="/profile" className="text-gray-600 text-md p-4 w-full text-center">Profile</a>
       </div>
     </div>

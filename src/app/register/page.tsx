@@ -1,5 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -16,6 +17,7 @@ import Image from "next/image";
 import { registerSchema, type registerType } from "@/lib/schema";
 import { api } from "@/trpc/react";
 import { useRouter } from "next/navigation";
+
 
 const backArrow = "/images/backarrow.svg";
 
@@ -59,6 +61,7 @@ const RegisterForm = () => {
             alt="Back Arrow Images"
             width={20}
             height={20}
+
           />
         </button>
       </Link>
@@ -72,6 +75,7 @@ const RegisterForm = () => {
       <div className="my-5 h-[1px] w-full bg-black"></div>
       <Form {...form}>
         <form
+
           onSubmit={form.handleSubmit(submitHandler)}
           className="h-1/2 space-y-8"
         >

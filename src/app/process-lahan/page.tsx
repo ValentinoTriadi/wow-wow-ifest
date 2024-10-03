@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 "use client";
-import Navbar from "@/components/tani-ternak/navbar";
+import Navbar from "@/components/Navbar";
 import OrderPath from "@/components/process-lahan/order-path";
 import ItemSelections from "@/components/process-lahan/items-selection";
 import type { CardGeneralProps } from "@/components/process-lahan/item-card";

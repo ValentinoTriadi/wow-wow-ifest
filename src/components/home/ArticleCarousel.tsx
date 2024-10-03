@@ -1,4 +1,3 @@
-
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -57,31 +56,29 @@ const ArticleCarousel = () => {
 
   return (
     <div className="relative mt-7 w-full overflow-hidden rounded-[20px]">
-      <div className="relative">
-        <div
-          className="flex transition-transform duration-1000 ease-out"
-          style={{ transform: `translateX(${-currentIndex * 100}%)` }}
-        >
-          {articles.map((article, index) => (
-            <div key={index} className="relative min-w-full flex-shrink-0">
-              <Link href={`/article/${article.id}`}>
-                <div className="relative h-48 w-full">
-                  <Image
-                    width={100}
-                    height={100}
-                    src={article.image}
-                    alt={article.title}
-                    className="h-48 w-full object-cover"
-                  />
-                  <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/55 to-transparent"></div>
-                  <h3 className="text-md absolute bottom-7 left-2 z-20 rounded-b-[20px] p-2 font-semibold text-white">
-                    {article.title}
-                  </h3>
-                </div>
-              </Link>
-            </div>
-          ))}
-        </div>
+      <div
+        className="flex transition-transform duration-1000 ease-out"
+        style={{ transform: `translateX(${-currentIndex * 100}%)` }}
+      >
+        {articles.map((article, index) => (
+          <div key={index} className="relative min-w-full flex-shrink-0">
+            <Link href={`/article/${article.id}`}>
+              <div className="h-48 w-full">
+                <Image
+                  src={article.image}
+                  alt={article.title}
+                  width={100}
+                  height={100}
+                  className="h-48 w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-black to-transparent"></div>
+              </div>
+              <h3 className="text-md absolute bottom-7 left-2 break-words rounded-b-[20px] p-2 font-semibold text-white">
+                {article.title}
+              </h3>
+            </Link>
+          </div>
+        ))}
       </div>
       <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 transform space-x-2">
         {articles.map((_, idx) => (
@@ -94,6 +91,5 @@ const ArticleCarousel = () => {
     </div>
   );
 };
-
 
 export default ArticleCarousel;

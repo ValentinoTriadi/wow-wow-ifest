@@ -1,4 +1,6 @@
+
 "use client";
+
 
 import React, { useState } from "react";
 import ArticleCarousel from "@/components/ArticleCarousel";

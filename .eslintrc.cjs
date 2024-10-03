@@ -31,11 +31,11 @@ const config = {
     "@typescript-eslint/no-misused-promises": [
       "error",
       {
-        checksVoidReturn: {
-          attributes: false,
-        },
-      },
-    ],
+        "checksVoidReturn": {
+          "attributes": false
+        }
+      }
+    ]
   },
-};
+}
 module.exports = config;

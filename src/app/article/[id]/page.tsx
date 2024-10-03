@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -10,6 +11,7 @@ const ArticlePage = ({ params }: { params: { id: string } }) => {
 
   // Find the article based on the ID
   const article = articles.find((article) => article.id === parseInt(id, 10));
+
 
   const router = useRouter();
   // Handle case where article is not found
@@ -57,11 +59,13 @@ const ArticlePage = ({ params }: { params: { id: string } }) => {
           <span className="ml-2">Back</span>
         </button>
       </section>
+
       {/* <section className="relative bg-white p-6 rounded-b-lg shadow-md mt-4">
         <p className="text-gray-800 leading-relaxed">
           {article.content}
         </p>
       </section> */}
+
     </main>
   );
 };

@@ -1,5 +1,7 @@
+
 import { HydrateClient } from "@/trpc/server";
 import { LinkButton } from "@/components/login/linkbutton";
+
 import { getServerAuthSession } from "@/server/auth";
 import { LogoutButton } from "@/components/logout-button";
 import Head from "next/head";
@@ -41,7 +43,9 @@ export default async function Home() {
         <title>TumbuhIn</title>
       </Head>
       <Navbar />
+
       <main className="flex flex-col gap-8 p-4">
+
         <section>
           <h2 className="mx-1 text-2xl font-bold">Halo, Davis!</h2>
           <ArticleCarousel />
