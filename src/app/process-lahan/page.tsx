@@ -136,7 +136,7 @@ export const cardsData: Record<number, CardGeneralProps[]> = {
       price: 33000,
       location: "Location V",
       image: StaticImageTranslator(bibit5),
-    }, // Reusing card2Image as a placeholder
+    }, 
   ],
   4: [
     {
