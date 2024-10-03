@@ -37,6 +37,15 @@ export default {
   				DEFAULT: 'hsl(var(--muted))',
   				foreground: 'hsl(var(--muted-foreground))'
   			},
+			lime: {
+				100: '#E0F1C0',
+				200: '#CCE997',
+				300: '#B8E06D',
+				400: '#A4D844',
+				500: '#86B737',
+				600: '#729D2E',
+				700: '#496A1C',
+			},
   			accent: {
   				DEFAULT: 'hsl(var(--accent))',
   				foreground: 'hsl(var(--accent-foreground))'
