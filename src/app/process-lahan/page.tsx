@@ -40,8 +40,11 @@ import DetailPekerja from "@/components/process-lahan/detail-pekerja";
 import DetailBibit from "@/components/process-lahan/detail-bibit";
 import DetailPerawatan from "@/components/process-lahan/detail-perawatan";
 import DetailALLLahan from "@/components/process-lahan/detail-all";
+interface CardsData {
+  [key: number]: CardGeneralProps[];
+}
 
-export const cardsData: Record<number, CardGeneralProps[]> = {
+const cardsData: CardsData = {
   1: [
     {
       name: "Card 1",
@@ -136,7 +139,7 @@ export const cardsData: Record<number, CardGeneralProps[]> = {
       price: 33000,
       location: "Location V",
       image: StaticImageTranslator(bibit5),
-    }, 
+    },
   ],
   4: [
     {
@@ -238,7 +241,7 @@ const ProcessLahan = () => {
   const searchParams = useSearchParams();
   const currentNum = Number(searchParams.get("page")) || 1;
   const router = useRouter();
-  const currentData = cardsData[currentNum] ?? [];
+  const currentData: CardGeneralProps[] = cardsData[currentNum] ?? [];
 
   const [isLahan, setLahan] = useState<boolean>(false);
   const [isPekerja, setPekerja] = useState<boolean>(false);
