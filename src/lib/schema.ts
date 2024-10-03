@@ -4,18 +4,20 @@ export const deleteSchema = z.object({ id: z.string().min(1) });
 
 // Auth Schema
 export const registerSchema = z.object({
-  phone: z.number().min(10).max(13),
-  gender: z.enum(["Lakilaki", "Perempuan"]),
+  email: z.string().email().min(3).max(255),
   nama: z.string().min(3).max(255),
-  birthdate: z.string().min(10).max(10),
-  NIK: z.number().min(12).max(12),
   password: z.string().min(8).max(255),
+  confirmPassword: z.string().min(8).max(255),
 });
+
+export type registerType = z.infer<typeof registerSchema>;
 
 export const loginSchema = z.object({
   email_or_phone: z.string().min(10).max(255),
   password: z.string().min(8).max(255),
 });
+
+export type loginType = z.infer<typeof loginSchema>;
 
 // Lahan Schema
 export const lahanSchema = z.object({
@@ -77,19 +79,42 @@ export const getAllPekerjaSchema = z.object({
   maxHarga: z.number().optional(),
 });
 
-
 // Panen Schema
 export const CreatePanenSchema = z.object({
-    userId: z.string(),
-    images: z.array(z.string()),
-    title: z.string(),
-    lokasi: z.string(),
-    kondisi: z.string()
-})
+  userId: z.string(),
+  images: z.array(z.string()),
+  title: z.string(),
+  lokasi: z.string(),
+  kondisi: z.string(),
+});
 
 export const UpdateRatingSchema = z.object({
-    userId: z.string(),
-    workerId: z.string(),
-    panenId: z.string(),
-    rating: z.array(z.number().min(1).max(5))
+  userId: z.string(),
+  workerId: z.string(),
+  panenId: z.string(),
+  rating: z.array(z.number().min(1).max(5)),
+});
+
+// Bibit --------------------------------
+export const GetBibitSchema = z.object({
+  tag: z.string(),
+});
+
+// Produk --------------------------------
+export const GetProdukSchema = z.object({
+    tag: z.string()
+})
+
+
+// User Schema
+export const GetUserSchema = z.object({
+    id: z.string()
+})
+
+export const UpdateUserSchema = z.object({
+    id: z.string(),
+    name: z.string(),
+    email: z.string(),
+    phone: z.number(),
+    password: z.string()
 })

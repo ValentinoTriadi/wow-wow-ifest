@@ -6,9 +6,11 @@ import {
 } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
-
 import { env } from "@/env";
 import { db } from "@/server/db";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { TRPCError } from "@trpc/server";
+import { compare } from "bcryptjs";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -37,12 +39,29 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
+  session: {
+    strategy: "jwt",
+  },
+  jwt: {
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+  secret: env.NEXTAUTH_SECRET,
   callbacks: {
-    session: ({ session, user }) => ({
+    jwt: ({ token, user, profile }) => {
+      if (user) {
+        token.id = user.id;
+        token.name = user.name;
+        token.email = user.email;
+      }
+      return token;
+    },
+    session: ({ session, token }) => ({
       ...session,
       user: {
         ...session.user,
-        id: user.id,
+        id: token.id,
+        name: token.name,
+        email: token.email,
       },
     }),
   },
@@ -59,7 +78,85 @@ export const authOptions: NextAuthOptions = {
      */
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
+    }),
+    CredentialsProvider({
+      name: "Credentials",
+
+      credentials: {
+        email: {
+          label: "Email",
+          type: "text",
+          placeholder: "Gunakan Email Anda",
+        },
+        password: {
+          label: "Kata Sandi",
+          type: "password",
+          placeholder: "Gunakan Kata Sandi Anda",
+        },
+      },
+
+      async authorize(credentials) {
+        try {
+          if (!credentials) {
+            throw new TRPCError({
+              code: "BAD_REQUEST",
+              message: "Credentials are required",
+            });
+          }
+
+          if (!credentials.email) {
+            throw new TRPCError({
+              code: "BAD_REQUEST",
+              message: "Email is required",
+            });
+          }
+
+          if (!credentials.password) {
+            throw new TRPCError({
+              code: "BAD_REQUEST",
+              message: "Password is required",
+            });
+          }
+
+          const { email, password } = credentials;
+
+          const user = await db.user.findFirst({
+            where: {
+              email,
+            },
+          });
+
+          if (!user) {
+            throw new TRPCError({
+              code: "NOT_FOUND",
+              message: "User not found",
+            });
+          }
+
+          const isValidPassword = await compare(password, user.password);
+
+          if (!isValidPassword) {
+            throw new TRPCError({
+              code: "UNAUTHORIZED",
+              message: "Invalid Credentials",
+            });
+          }
+
+          return {
+            id: user.id,
+          };
+        } catch (error) {
+          if (error instanceof TRPCError) {
+            throw error;
+          } else {
+            throw new TRPCError({
+              code: "INTERNAL_SERVER_ERROR",
+              cause: error,
+            });
+          }
+        }
+      },
     }),
   ],
 };
