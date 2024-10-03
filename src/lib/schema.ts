@@ -106,3 +106,15 @@ export const GetProdukSchema = z.object({
 })
 
 
+// User Schema
+export const GetUserSchema = z.object({
+    id: z.string()
+})
+
+export const UpdateUserSchema = z.object({
+    id: z.string(),
+    name: z.string(),
+    email: z.string(),
+    phone: z.number(),
+    password: z.string()
+})
