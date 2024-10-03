@@ -1,5 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -7,7 +8,9 @@ import {
   FormField,
   FormItem,
   FormLabel,
+
   FormMessage,
+
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -43,11 +46,13 @@ const LoginForm = () => {
     defaultValues: {
       email_or_phone: "",
       password: "",
+
     },
   });
 
   return (
     <div className="m-10 flex h-screen flex-col font-poppins">
+
       <Link href="/">
         <button className="my-8 flex h-10 w-10 items-center justify-center rounded-md bg-lime-500 max-md:my-4 max-md:h-8 max-md:w-8">
           <Image
@@ -116,6 +121,7 @@ const LoginForm = () => {
           </span>
         </p>
       </div>
+
     </div>
   );
 };
