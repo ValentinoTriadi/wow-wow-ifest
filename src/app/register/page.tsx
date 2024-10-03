@@ -23,26 +23,27 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const loginSchema = z.object({
-    name: z.string().nonempty("Tolong isi Nama Lengkap anda !!"),
+    name: z.string()
+        .min(1, { message: "Nama Panjang is required" }),
     email: z
       .string()
       .email("Email yang digunakan tidak Valid")
-      .nonempty("Email is required"),
-    password: z.string().min(6, "Panjang password haruslah minimal 6 karakter"),
+      .min(1, { message: "Email is required" }),
+    password: z.string(),
     role: z.nativeEnum(LoginRole),
   });
 
   const roles = [
     {
-      id: LoginRole.USER,
+      id: LoginRole.User,
       label: "Pengguna",
     },
     {
-      id: LoginRole.WORKER,
+      id: LoginRole.Pekerja,
       label: "Pekerja",
     },
     {
-      id: LoginRole.SELLER,
+      id: LoginRole.Penjual,
       label: "Penjual",
     },
   ];
@@ -61,7 +62,7 @@ const RegisterForm = () => {
     defaultValues: {
       email: "",
       password: "",
-      role: LoginRole.USER,
+      role: LoginRole.User,
     },
   });
 

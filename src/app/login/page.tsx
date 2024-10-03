@@ -26,22 +26,22 @@ const LoginForm = () => {
     email: z
       .string()
       .email("Invalid email address")
-      .nonempty("Email is required"),
+        .min(1, { message: "Email is required" }),
     password: z.string(),
     role: z.nativeEnum(LoginRole),
   });
 
   const roles = [
     {
-      id: LoginRole.USER,
+      id: LoginRole.User,
       label: "User",
     },
     {
-      id: LoginRole.WORKER,
+      id: LoginRole.Pekerja,
       label: "Worker",
     },
     {
-      id: LoginRole.SELLER,
+      id: LoginRole.Penjual,
       label: "Seller",
     },
   ];
@@ -60,7 +60,7 @@ const LoginForm = () => {
     defaultValues: {
       email: "",
       password: "",
-      role: LoginRole.USER,
+      role: LoginRole.User,
     },
   });
 

@@ -1,7 +1,7 @@
 export enum LoginRole{
-    USER,
-    SELLER,
-    WORKER
+    Pekerja,
+    Penjual,
+    User
 }
 
 export interface ILoginData{
