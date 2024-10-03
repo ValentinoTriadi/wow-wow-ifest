@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Link from "next/link";
 import BackArrow from "public/images/backarrow.svg";
+import { StaticImageTranslator } from "@/utilities/static-image-translator";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -68,7 +69,7 @@ const LoginForm = () => {
       <Link href="/landing">
         <button className="my-8 flex h-10 w-10 items-center justify-center rounded-md bg-lime-500 max-md:my-4 max-md:h-8 max-md:w-8">
           <Image
-            src={BackArrow}
+            src={StaticImageTranslator(BackArrow)}
             height={10}
             width={10}
             alt="Back Arrow Images"

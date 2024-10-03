@@ -1,7 +1,7 @@
 import Foto1 from "public/images/dummyphoto/tani2.png";
 import Foto2 from "public/images/dummyphoto/tani3.png";
 import { StaticImageTranslator } from "../../utilities/static-image-translator";
-import { ILaporanCard } from "./card-laporan-pekerja";
+import type { ILaporanCard } from "./card-laporan-pekerja";
 import { CardLaporanPekerja } from "./card-laporan-pekerja";
 import { CreateFormattedDate } from "@/utilities/date-formator";
 

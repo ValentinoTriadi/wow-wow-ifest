@@ -1,5 +1,5 @@
-import Image, { StaticImageData } from "next/image";
-import React, { useState } from "react";
+import Image from "next/image";
+import type { StaticImageData } from "next/image";
 
 export enum KondisiLahanEnum {
   Baik,

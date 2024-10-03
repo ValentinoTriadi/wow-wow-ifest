@@ -2,7 +2,6 @@ import KondisiObj, { KondisiLahanEnum } from "./objectkondisi";
 import air from "public/images/air.svg";
 import plant from "public/images/plant.svg";
 import hama from "public/images/hama.svg";
-import { StaticImageData } from "next/image";
 import { StaticImageTranslator } from "../../utilities/static-image-translator";
 
 const KondisiLahan = () => {

@@ -7,7 +7,7 @@ import Tanam_Photo from "public/images/dummyphoto/tani1.png";
 import KondisiLahan from "@/components/tani-ternak/kondisi-lahan";
 
 const taniternak = () => {
-  let nama_lahan: string = "Panen Jahe Merah";
+  const nama_lahan = "Panen Jahe Merah";
   return (
     <div className="bg-[#f3f3f3] text-[#505050]">
       <Navbar />

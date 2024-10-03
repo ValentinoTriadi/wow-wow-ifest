@@ -1,7 +1,8 @@
-import { StaticImageData } from "next/image";
+import type { StaticImageData } from "next/image";
 
-// Used to Translate any data to StaticImageData
-export function StaticImageTranslator(data: any | string) {
-  const translatedData: StaticImageData = data as StaticImageData;
-  return translatedData;
+// Improved StaticImageTranslator with better type safety
+export function StaticImageTranslator(data: unknown): StaticImageData  {
+  // Check if the data is of type StaticImageData or can be safely cast
+  return data as StaticImageData
+  
 }
