@@ -70,7 +70,11 @@ const RegisterForm = () => {
       <Link href="/landing">
         <button className="my-8 flex h-10 w-10 items-center justify-center rounded-md bg-lime-500 max-md:my-4 max-md:h-8 max-md:w-8">
           <Image
-           src={backArrow} alt="Back Arrow Images" />
+            src={backArrow}
+            width={10}
+            height={10}
+            alt="Back Arrow Images"
+          />
         </button>
       </Link>
       <h1 className="text-4xl font-bold max-md:text-3xl">
@@ -134,6 +138,8 @@ const RegisterForm = () => {
                         type="button"
                       >
                         <Image
+                          width={10}
+                          height={10}
                           src={
                             showPassword
                               ? "/images/visibility.svg"

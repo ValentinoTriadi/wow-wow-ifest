@@ -16,8 +16,7 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Link from "next/link";
-
-const backArrow = "/images/backarrow.svg";
+import BackArrow from "public/images/backarrow.svg";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -68,7 +67,12 @@ const LoginForm = () => {
     <div className="m-10 flex h-screen flex-col font-poppins">
       <Link href="/landing">
         <button className="my-8 flex h-10 w-10 items-center justify-center rounded-md bg-lime-500 max-md:my-4 max-md:h-8 max-md:w-8">
-          <Image src={backArrow} alt="Back Arrow Images" />
+          <Image
+            src={BackArrow}
+            height={10}
+            width={10}
+            alt="Back Arrow Images"
+          />
         </button>
       </Link>
       <h1 className="text-4xl font-bold max-md:text-3xl">Masukkan Email</h1>
@@ -117,6 +121,8 @@ const LoginForm = () => {
                         type="button"
                       >
                         <Image
+                          width={10}
+                          height={10}
                           src={
                             showPassword
                               ? "/images/visibility.svg"
