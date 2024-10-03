@@ -159,13 +159,12 @@ model Pekerja {
   id           String   @id @default(cuid())
   userId       String
   images       String[]
-  header       String?
-  Lokasi       String?
+  nama         String?
+  lokasi       String?
   harga        Int?
   keahlian     String[]
   deskripsi    String?
   rincianKerja String[]
-  rating       Int?
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   Rating       Rating[]
 }
@@ -180,7 +179,7 @@ model Toko {
 
 model Rating {
   id           Int      @id @default(autoincrement())
-  rate         Int[]
+  rate         Int
   createdAt    DateTime @default(now())
   createdById  String
   workerRating String
