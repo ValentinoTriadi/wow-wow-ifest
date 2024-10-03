@@ -44,22 +44,23 @@ export default async function Home() {
         <title>TumbuhIn</title>
       </Head>
       <Navbar />
-      <main className="p-4">
-        <h2 className="text-2xl font-bold mb-4">Halo, Davis!</h2>
-        <div className="mb-4">
-          <input type="text" placeholder="Search..." className="w-full p-2 border rounded-full" />
-        </div>
-        <ArticleCarousel />
+      <main className="p-4 flex flex-col gap-8">
         <section>
-          <h3 className="text-xl font-bold mb-2">Kategori</h3>
+          <h2 className="text-2xl font-bold mx-1">Halo, Davis!</h2>
+          <ArticleCarousel />
+        </section>
+        <section>
+          <h3 className="text-xl font-bold mb-2 mx-1">Kategori</h3>
           <div className="flex space-x-4 mb-4">
             <button className="bg-[#dbefb2] px-4 py-2 rounded-full">Tani</button>
             <button className="bg-[#dbefb2] px-4 py-2 rounded-full">Ternak</button>
             <button className="bg-[#dbefb2] px-4 py-2 rounded-full">Kebun</button>
           </div>
+        </section>
+        <section>
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-xl font-bold">Panen saya</h3>
-            <button className="text-green-600">Lihat semua</button>
+            <h3 className="text-xl font-bold mx-1">Panen saya</h3>
+            <button className="text-[#77ab24] underline underline-offset-2">Lihat semua</button>
           </div>
           <MyHarvest />
         </section>
