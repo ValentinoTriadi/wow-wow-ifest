@@ -11,7 +11,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="bg-white p-4 shadow-md flex justify-between items-center relative">
+    <div className="bg-white p-4 shadow-md flex justify-between items-center relative z-50">
       <Image src="/logohorizontal.png" width={100} height={100} alt="TumbuhIn" />
       <nav>
         <button className="text-[#86B737] text-xl" onClick={handleToggle}>☰</button>
