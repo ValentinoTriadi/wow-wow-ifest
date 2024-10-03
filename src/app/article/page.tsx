@@ -5,7 +5,7 @@ import ArticleCarousel from '@/components/ArticleCarousel';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
 
-export const articles = [
+const articlesDummy = [
     {
         id: 1,
         title: 'Permakultur, Metode Bercocok Tanam yang "Sustainable"',
@@ -29,7 +29,6 @@ export const articles = [
     },
     // Add more articles with different categories here
 ];
-
 const Article = () => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
@@ -38,8 +37,8 @@ const Article = () => {
     };
 
     const filteredArticles = selectedCategory
-        ? articles.filter(article => article.category === selectedCategory)
-        : articles;
+        ? articlesDummy.filter(article => article.category === selectedCategory)
+        : articlesDummy;
 
     return (
         <div>
