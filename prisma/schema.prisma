@@ -60,20 +60,56 @@ enum Role {
   User
 }
 
+enum Gender {
+  None
+  Lakilaki
+  Perempuan
+}
+
 model User {
-  id            String    @id @default(cuid())
-  role          Role      @default(User)
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  Toko          Toko[]
-  Lahan         Lahan[]
-  Budak         Pekerja[]
-  Rating        Rating[]
-  Post          Post[]
+  id             String           @id @default(cuid())
+  role           Role             @default(User)
+  name           String
+  email          String?          @unique
+  emailVerified  DateTime?
+  phoneNumber    Int              @default(0)
+  tanggalLahir   DateTime
+  NIK            Int              @default(0)
+  password       String
+  gender         Gender           @default(None)
+  image          String?
+  accounts       Account[]
+  sessions       Session[]
+  Toko           Toko[]
+  Lahan          Lahan[]
+  Budak          Pekerja[]
+  Rating         Rating[]
+  Post           Post[]
+  LaporanPekerja LaporanPekerja[]
+}
+
+model Panen {
+  id             String           @id @default(cuid())
+  userId         String
+  images         String[]
+  title          String
+  lokasi         String
+  kondisi        String
+  laporanPekerja LaporanPekerja[]
+  ratingId       Int
+  Rating         Rating           @relation(fields: [ratingId], references: [id])
+}
+
+model LaporanPekerja {
+  id        String   @id @default(cuid())
+  userId    String
+  images    String
+  date      DateTime
+  deskripsi String
+  rating    Int?
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Panen     Panen?   @relation(fields: [panenId], references: [id])
+  panenId   String?
 }
 
 model Product {
@@ -144,13 +180,14 @@ model Toko {
 
 model Rating {
   id           Int      @id @default(autoincrement())
-  rate         Int
+  rate         Int[]
   createdAt    DateTime @default(now())
   createdById  String
   workerRating String
 
   user   User    @relation(fields: [createdById], references: [id], onDelete: Cascade)
   worker Pekerja @relation(fields: [workerRating], references: [id], onDelete: Cascade)
+  Panen  Panen[]
 }
 
 model VerificationToken {
