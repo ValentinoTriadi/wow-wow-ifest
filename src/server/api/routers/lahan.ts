@@ -5,6 +5,7 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "@/server/api/trpc";
+import {CreateLahanSchema, GetAllLahanSchema, UpdateLahanSchema} from "@/lib/schema";
 
 export const lahanRouter = createTRPCRouter({
   hello: publicProcedure
@@ -16,22 +17,7 @@ export const lahanRouter = createTRPCRouter({
     }),
 
   create: protectedProcedure
-    .input(
-      z.object({
-        name: z.string().min(1),
-        deskripsi: z.string(),
-        luas: z.number(),
-        harga: z.number(),
-        jenis: z.string(),
-        alamat: z.string(),
-        kelurahan: z.string(),
-        kecamatan: z.string(),
-        kabupaten: z.string(),
-        provinsi: z.string(),
-        latitude: z.number(),
-        longitude: z.number(),
-      }),
-    )
+    .input(CreateLahanSchema)
     .mutation(async ({ ctx, input }) => {
       try {
         const tersediaUntuk = input.jenis
@@ -71,23 +57,7 @@ export const lahanRouter = createTRPCRouter({
     }),
 
   update: protectedProcedure
-    .input(
-      z.object({
-        id: z.string().min(1),
-        name: z.string().min(1).optional(),
-        deskripsi: z.string().optional(),
-        luas: z.number(),
-        harga: z.number(),
-        jenis: z.string(),
-        alamat: z.string(),
-        kelurahan: z.string(),
-        kecamatan: z.string(),
-        kabupaten: z.string(),
-        provinsi: z.string(),
-        latitude: z.number(),
-        longitude: z.number(),
-      }),
-    )
+    .input(UpdateLahanSchema)
     .mutation(async ({ ctx, input }) => {
       try {
         if (!ctx.db.lahan) {
@@ -212,18 +182,7 @@ export const lahanRouter = createTRPCRouter({
   }),
 
   getAll: protectedProcedure
-    .input(
-      z.object({
-        limit: z.number().optional(),
-        offset: z.number().optional(),
-        kategori: z.string().optional(),
-        lokasi: z.string().optional(),
-        minLuas: z.number().optional(),
-        maxLuas: z.number().optional(),
-        minHarga: z.number().optional(),
-        maxHarga: z.number().optional(),
-      }),
-    )
+    .input(GetAllLahanSchema)
     .query(async ({ ctx, input }) => {
       try {
         if (!ctx.db.lahan) {
