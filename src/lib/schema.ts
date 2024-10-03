@@ -102,5 +102,19 @@ export const GetBibitSchema = z.object({
 
 // Produk --------------------------------
 export const GetProdukSchema = z.object({
-  tag: z.string(),
-});
+    tag: z.string()
+})
+
+
+// User Schema
+export const GetUserSchema = z.object({
+    id: z.string()
+})
+
+export const UpdateUserSchema = z.object({
+    id: z.string(),
+    name: z.string(),
+    email: z.string(),
+    phone: z.number(),
+    password: z.string()
+})
