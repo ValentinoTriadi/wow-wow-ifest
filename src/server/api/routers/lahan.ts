@@ -5,7 +5,12 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "@/server/api/trpc";
-import {CreateLahanSchema, GetAllLahanSchema, UpdateLahanSchema} from "@/lib/schema";
+import {
+  deleteSchema,
+  getAllLahanSchema,
+  lahanSchema,
+  lahanUpdateSchema,
+} from "@/lib/schema";
 
 export const lahanRouter = createTRPCRouter({
   hello: publicProcedure
@@ -17,7 +22,7 @@ export const lahanRouter = createTRPCRouter({
     }),
 
   create: protectedProcedure
-    .input(CreateLahanSchema)
+    .input(lahanSchema)
     .mutation(async ({ ctx, input }) => {
       try {
         const tersediaUntuk = input.jenis
@@ -57,7 +62,7 @@ export const lahanRouter = createTRPCRouter({
     }),
 
   update: protectedProcedure
-    .input(UpdateLahanSchema)
+    .input(lahanUpdateSchema)
     .mutation(async ({ ctx, input }) => {
       try {
         if (!ctx.db.lahan) {
@@ -116,7 +121,7 @@ export const lahanRouter = createTRPCRouter({
     }),
 
   delete: protectedProcedure
-    .input(z.object({ id: z.string().min(1) }))
+    .input(deleteSchema)
     .mutation(async ({ ctx, input }) => {
       try {
         if (!ctx.db.lahan) {
@@ -182,7 +187,7 @@ export const lahanRouter = createTRPCRouter({
   }),
 
   getAll: protectedProcedure
-    .input(GetAllLahanSchema)
+    .input(getAllLahanSchema)
     .query(async ({ ctx, input }) => {
       try {
         if (!ctx.db.lahan) {

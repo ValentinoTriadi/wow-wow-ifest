@@ -1,9 +1,10 @@
 import { postRouter } from "@/server/api/routers/post";
 import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
 import { lahanRouter } from "./routers/lahan";
-import {authRouter} from "@/server/api/routers/authentication";
+import { authRouter } from "./routers/authentication";
 import {panenRouter} from "@/server/api/routers/panen";
 import {bibitRouter} from "@/server/api/routers/bibit";
+import { pekerjaRouter } from "./routers/pekerja";
 
 /**
  * This is the primary router for your server.
@@ -13,6 +14,7 @@ import {bibitRouter} from "@/server/api/routers/bibit";
 export const appRouter = createTRPCRouter({
   post: postRouter,
   lahan: lahanRouter,
+  pekerja: pekerjaRouter,
   auth: authRouter,
   panen: panenRouter,
   bibit: bibitRouter
