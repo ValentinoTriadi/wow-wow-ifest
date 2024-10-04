@@ -1,24 +1,46 @@
 "use client"
 
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
+import { api } from "@/trpc/react";
 
 interface UserProps{
     user: {
         name: string,
-        email: string,
-        telp: number,
-        password: string
+        email: string
     }
 }
+
+export const ProfileContent = ({ userId }: { userId: string }) => {
+    const { data, isLoading } = api.user.getUser.useQuery({ id: userId });
+    const [formattedUser, setFormattedUser] = useState<{ name: string; email: string } | null>(null);
+
+    useEffect(() => {
+        if (data) {
+            const { name, email } = data;
+            setFormattedUser({
+                name: name ?? "",
+                email: email ?? "",
+            });
+        }
+    }, [data]);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (!formattedUser) {
+        return <div>User not found</div>;
+    }
+
+    return <ProfilePage user={formattedUser} />;
+};
 
 export const ProfilePage: React.FC<UserProps> = ({user}) => {
     const [name, setName] = useState(user.name);
     const [email, setEmail] = useState(user.email);
-    const [phone, setPhone] = useState(user.telp);
-    const [password, setPassword] = useState(user.password);
-    const [image, setImage] = useState("/article/buah.jpg");
+    const [image, setImage] = useState("/article/woman.jpg");
 
     const handleUpdateProfile = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -55,26 +77,6 @@ export const ProfilePage: React.FC<UserProps> = ({user}) => {
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="border border-gray-300 p-2 rounded w-full"
-                                required
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block text-gray-700">Nomor Telepon</label>
-                            <input
-                                type="tel"
-                                value={phone}
-                                onChange={(e) => setPhone(parseInt(e.target.value))}
-                                className="border border-gray-300 p-2 rounded w-full"
-                                required
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block text-gray-700">Kata Sandi</label>
-                            <input
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
                                 className="border border-gray-300 p-2 rounded w-full"
                                 required
                             />

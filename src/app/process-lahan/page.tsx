@@ -40,121 +40,124 @@ import DetailPekerja from "@/components/process-lahan/detail-pekerja";
 import DetailBibit from "@/components/process-lahan/detail-bibit";
 import DetailPerawatan from "@/components/process-lahan/detail-perawatan";
 import DetailALLLahan from "@/components/process-lahan/detail-all";
+interface CardsData {
+  [key: number]: CardGeneralProps[];
+}
 
-export const cardsData: Record<number, CardGeneralProps[]> = {
+const cardsData: CardsData = {
   1: [
     {
-      name: "Card 1",
+      name: "Lahan Empang",
       price: 10000,
-      location: "Location 1",
+      location: "Jatinangor",
       image: StaticImageTranslator(lahan1),
     },
     {
-      name: "Card 2",
+      name: "Kandang Ayam Luas",
       price: 15000,
-      location: "Location 2",
+      location: "Kelurahan Ciseke",
       image: StaticImageTranslator(lahan2),
     },
     {
-      name: "Card 3",
+      name: "Lahan Tani dan Kebun Ciparay",
       price: 20000,
-      location: "Location 3",
+      location: "Jl. Raya Ciparay",
       image: StaticImageTranslator(lahan3),
     },
     {
-      name: "Card 4",
+      name: "Kandang Sapi Elit",
       price: 25000,
-      location: "Location 4",
+      location: "Jl. Tamansari",
       image: StaticImageTranslator(lahan4),
     },
     {
-      name: "Card 5",
+      name: "Empang Lele 1 Hektar",
       price: 30000,
-      location: "Location 5",
+      location: "Bojongsoang",
       image: StaticImageTranslator(lahan5),
     },
   ],
   2: [
     {
-      name: "Card A",
+      name: "Wahyu Hidayat",
       price: 12000,
-      location: "Location A",
+      location: "Kelurahan Rancaekek",
       image: StaticImageTranslator(petani1),
     },
     {
-      name: "Card B",
+      name: "Mulyanto P",
       price: 18000,
-      location: "Location B",
+      location: "Kelurahan Cimahi",
       image: StaticImageTranslator(petani2),
     },
     {
-      name: "Card C",
+      name: "Heri Supriyadi",
       price: 22000,
-      location: "Location C",
+      location: "Ciparay Barat",
       image: StaticImageTranslator(petani3),
     },
     {
-      name: "Card D",
+      name: "Davis Abadi",
       price: 27000,
-      location: "Location D",
+      location: "Cibiru Tengah",
       image: StaticImageTranslator(petani4),
     },
     {
-      name: "Card E",
+      name: "Joko Agung",
       price: 32000,
-      location: "Location E",
+      location: "Cibiru Wetan",
       image: StaticImageTranslator(petani5),
     },
   ],
   3: [
     {
-      name: "Card X",
+      name: "Bibit Ayam Petelur",
       price: 13000,
-      location: "Location X",
+      location: "Jatinangor",
       image: StaticImageTranslator(bibit1),
     },
     {
-      name: "Card Y",
+      name: "Ikan Gurame Bibit",
       price: 19000,
-      location: "Location Y",
+      location: "Desa Ciparay",
       image: StaticImageTranslator(bibit2),
     },
     {
-      name: "Card Z",
+      name: "Bibit Kelapa Subur",
       price: 23000,
-      location: "Location Z",
+      location: "Bojongsoang",
       image: StaticImageTranslator(bibit3),
     },
     {
-      name: "Card W",
+      name: "Bibit Pohon Pepaya",
       price: 28000,
-      location: "Location W",
+      location: "Rancaekek Timur",
       image: StaticImageTranslator(bibit4),
     },
     {
-      name: "Card V",
+      name: "Bibit Ikan Mas",
       price: 33000,
-      location: "Location V",
+      location: "Kopo",
       image: StaticImageTranslator(bibit5),
-    }, 
+    },
   ],
   4: [
     {
       name: "Card Alpha",
       price: 14000,
-      location: "Location Alpha",
+      location: "Padalarang Timur",
       image: StaticImageTranslator(perawatan1),
     },
     {
       name: "Card Beta",
       price: 20000,
-      location: "Location Beta",
+      location: "Kelurahan Sumedang",
       image: StaticImageTranslator(perawatan2),
     },
     {
       name: "Card Gamma",
       price: 24000,
-      location: "Location Gamma",
+      location: "Ciseke Tengah",
       image: StaticImageTranslator(perawatan3),
     },
   ],
@@ -238,7 +241,7 @@ const ProcessLahan = () => {
   const searchParams = useSearchParams();
   const currentNum = Number(searchParams.get("page")) || 1;
   const router = useRouter();
-  const currentData = cardsData[currentNum] ?? [];
+  const currentData: CardGeneralProps[] = cardsData[currentNum] ?? [];
 
   const [isLahan, setLahan] = useState<boolean>(false);
   const [isPekerja, setPekerja] = useState<boolean>(false);

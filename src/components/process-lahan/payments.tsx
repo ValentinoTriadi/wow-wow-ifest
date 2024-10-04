@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { SetStateAction, useState } from "react";
 
 const Payment = () => {
+  
   const [selectedBank, setSelectedBank] = useState<string | null>(null);
   const [instructions, setInstructions] = useState("");
 
@@ -121,7 +123,7 @@ const Payment = () => {
           </div>
         </div>
         <button className="w-full rounded-md bg-lime-500 py-2 font-bold text-white hover:bg-green-500">
-          BAYAR
+          <Link href="/">Bayar</Link>
         </button>
       </div>
     </div>

@@ -53,15 +53,15 @@ export default async function Home() {
         <section>
           <h3 className="mx-1 mb-2 text-xl font-bold">Kategori</h3>
           <div className="mb-4 flex space-x-4">
-            <button className="rounded-full bg-[#dbefb2] px-4 py-2">
+            <a href="/layananTani" className="rounded-full bg-[#dbefb2] px-4 py-2">
               Tani
-            </button>
-            <button className="rounded-full bg-[#dbefb2] px-4 py-2">
+            </a>
+            <a href="/layananTernak" className="rounded-full bg-[#dbefb2] px-4 py-2" >
               Ternak
-            </button>
-            <button className="rounded-full bg-[#dbefb2] px-4 py-2">
+            </a>
+            <a href="/layananKebun" className="rounded-full bg-[#dbefb2] px-4 py-2" >
               Kebun
-            </button>
+            </a>
           </div>
         </section>
         <section>
