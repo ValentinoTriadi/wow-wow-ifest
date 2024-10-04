@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SetStateAction, useState } from "react";
 
 const Payment = () => {
@@ -12,10 +13,6 @@ const Payment = () => {
   const handleInstructionSelection = (instruction: SetStateAction<string>) => {
     setInstructions(instruction);
   };
-
-  const handleChangePage = (link: string) =>{
-    
-  }
 
   return (
     <div className="min-h-screen  p-4">
@@ -125,9 +122,9 @@ const Payment = () => {
             ))}
           </div>
         </div>
-        <a href="\" className="w-full rounded-md bg-lime-500 py-2 font-bold text-white hover:bg-green-500">
-          BAYAR
-        </a>
+        <button className="w-full rounded-md bg-lime-500 py-2 font-bold text-white hover:bg-green-500">
+          <Link href="/">Bayar</Link>
+        </button>
       </div>
     </div>
   );
